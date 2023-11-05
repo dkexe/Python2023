@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="11" time="14.994" timestamp="2023-09-04T23:03:50.948726" hostname="Feeds-MacBook-Air.local"><testcase classname="test_1_create_booking" name="test_create_booking" time="1.149"><failure message="AssertionError: assert {'additionaln...: 'Feed', ...} == {'additionaln...: 'Feed', ...}&#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'bookingdates': {'checkin': '2023-09-01', 'checkout': '2023-09-05'}} != {'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'}}&#10;  Full diff:&#10;    {&#10;     'additionalneeds': 'super bowls',&#10;  -  'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'},...&#10;  &#10;  ...Full output truncated (8 lines hidden), use '-vv' to show">create_booking = {'booking': {'additionalneeds': 'super bowls', 'bookingdates': {'checkin': '2023-09-01', 'checkout': '2023-09-05'}, 'depositpaid': True, 'firstname': 'Feed', ...}, 'bookingid': 967}
+
+    def test_create_booking(create_booking):
+        assert create_booking["bookingid"] != None
+&gt;       assert create_booking["booking"] == booking_body
+E       AssertionError: assert {'additionaln...: 'Feed', ...} == {'additionaln...: 'Feed', ...}
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'bookingdates': {'checkin': '2023-09-01', 'checkout': '2023-09-05'}} != {'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'}}
+E         Full diff:
+E           {
+E            'additionalneeds': 'super bowls',
+E         -  'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'},...
+E         
+E         ...Full output truncated (8 lines hidden), use '-vv' to show
+
+test_1_create_booking.py:14: AssertionError</failure></testcase><testcase classname="test_2_getbooking_detail" name="test_get_booking_ids" time="1.196" /><testcase classname="test_2_getbooking_detail" name="test_get_booking_details" time="1.346"><failure message="AssertionError: assert {'additionaln...: 'Feed', ...} == {'additionaln...: 'Feed', ...}&#10;  Omitting 5 identical items, use -vv to show&#10;  Differing items:&#10;  {'bookingdates': {'checkin': '2023-09-01', 'checkout': '2023-09-05'}} != {'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'}}&#10;  Full diff:&#10;    {&#10;     'additionalneeds': 'super bowls',&#10;  -  'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'},...&#10;  &#10;  ...Full output truncated (8 lines hidden), use '-vv' to show">def test_get_booking_details():
+&gt;       assert get_booking_details(create_booking_data[0][0]) == booking_body
+E       AssertionError: assert {'additionaln...: 'Feed', ...} == {'additionaln...: 'Feed', ...}
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'bookingdates': {'checkin': '2023-09-01', 'checkout': '2023-09-05'}} != {'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'}}
+E         Full diff:
+E           {
+E            'additionalneeds': 'super bowls',
+E         -  'bookingdates': {'checkin': '2023-08-10', 'checkout': '2023-08-10'},...
+E         
+E         ...Full output truncated (8 lines hidden), use '-vv' to show
+
+test_2_getbooking_detail.py:29: AssertionError</failure></testcase><testcase classname="test_2_getbooking_detail" name="test_get_booking_details_with_parametrize[374-booking_body0]" time="1.223" /><testcase classname="test_2_getbooking_detail" name="test_get_booking_details_with_parametrize[317-booking_body1]" time="1.306"><failure message="AssertionError">bookingid = 317
+booking_body = {'additionalneeds': 'super bowls', 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'depositpaid': True, 'firstname': 'Josh', ...}
+
+    @pytest.mark.parametrize("bookingid,booking_body",booking_data)
+    def test_get_booking_details_with_parametrize(bookingid,booking_body):
+&gt;       assert get_booking_details(bookingid) == booking_body
+
+test_2_getbooking_detail.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+booking_id = 317
+
+    def get_booking_details(booking_id):
+        x = requests.get(target_url+str(booking_id))
+&gt;       assert x.status_code == 200
+E       AssertionError
+
+get_booking.py:14: AssertionError</failure></testcase><testcase classname="test_2_getbooking_detail" name="test_get_booking_details_with_parametrize2[374-booking_body20]" time="1.328" /><testcase classname="test_2_getbooking_detail" name="test_get_booking_details_with_parametrize2[317-booking_body21]" time="1.188"><failure message="AssertionError">bookingid2 = 317
+booking_body2 = {'additionalneeds': 'super bowls', 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'depositpaid': True, 'firstname': 'Josh', ...}
+
+    @pytest.mark.parametrize("bookingid2,booking_body2",booking_data2)
+    def test_get_booking_details_with_parametrize2(bookingid2,booking_body2):
+&gt;       assert get_booking_details(bookingid2) == booking_body2
+
+test_2_getbooking_detail.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+booking_id = 317
+
+    def get_booking_details(booking_id):
+        x = requests.get(target_url+str(booking_id))
+&gt;       assert x.status_code == 200
+E       AssertionError
+
+get_booking.py:14: AssertionError</failure></testcase><testcase classname="test_2_getbooking_detail" name="test_get_created_booking_details[718-create_booking_body0]" time="1.159" /><testcase classname="test_3_change_booking" name="test_update_full_booking" time="1.228" /><testcase classname="test_3_change_booking" name="test_update_part_booking" time="1.325" /><testcase classname="test_4_delete_booking" name="test_delete_booking" time="2.461" /></testsuite></testsuites>
